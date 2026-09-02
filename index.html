@@ -1043,6 +1043,32 @@
 	    gap:13px;
 	    max-width:650px;
 	  }
+	  .video-project-nav{
+	    display:flex;
+	    gap:9px;
+	    margin-bottom:-2px;
+	  }
+	  .video-project-nav button{
+	    width:10px;
+	    height:10px;
+	    padding:0;
+	    border:0;
+	    border-radius:999px;
+	    background:rgba(47,111,228,0.28);
+	    cursor:pointer;
+	    transition:width 0.24s ease, background 0.24s ease;
+	  }
+	  .video-project-nav button.active{
+	    width:32px;
+	    background:#2f6fe4;
+	  }
+	  .video-project-slide{
+	    display:none;
+	    gap:13px;
+	  }
+	  .video-project-slide.active{
+	    display:grid;
+	  }
 	  .video-project-card h3{
 	    margin:0;
 	    color:#16223b;
@@ -1058,14 +1084,60 @@
 	    line-height:1.35;
 	    font-weight:850;
 	  }
-	  .video-project-card video{
+	  .video-project-card video,
+	  .video-link-card{
 	    width:100%;
 	    max-height:min(430px, 52vh);
 	    display:block;
-	    object-fit:contain;
 	    border-radius:12px;
 	    background:rgba(15,28,52,0.18);
 	    box-shadow:0 18px 38px rgba(22,34,59,0.18);
+	  }
+	  .video-project-card video{
+	    object-fit:contain;
+	  }
+	  .video-link-card{
+	    position:relative;
+	    overflow:hidden;
+	    color:#fff;
+	    text-decoration:none;
+	    transform:translateZ(0);
+	    transition:transform 0.24s ease, box-shadow 0.24s ease;
+	    cursor:pointer;
+	  }
+	  .video-link-card:hover,
+	  .video-link-card:focus-visible{
+	    transform:scale(1.025);
+	    box-shadow:0 22px 48px rgba(47,111,228,0.2);
+	    outline:none;
+	  }
+	  .video-link-card img{
+	    width:100%;
+	    height:100%;
+	    max-height:min(430px, 52vh);
+	    display:block;
+	    object-fit:cover;
+	  }
+	  .video-link-card::after{
+	    content:"";
+	    position:absolute;
+	    inset:0;
+	    background:linear-gradient(180deg, rgba(9,18,35,0.04), rgba(9,18,35,0.42));
+	    pointer-events:none;
+	  }
+	  .video-link-card span{
+	    position:absolute;
+	    right:18px;
+	    bottom:16px;
+	    z-index:1;
+	    padding:8px 14px;
+	    border-radius:999px;
+	    background:rgba(255,255,255,0.78);
+	    color:#2f6fe4;
+	    font-size:13px;
+	    line-height:1;
+	    font-weight:900;
+	    box-shadow:inset 0 1px 0 rgba(255,255,255,0.95), 0 12px 24px rgba(22,34,59,0.14);
 	  }
 	  .video-project-card p{
 	    margin:0;
@@ -3535,14 +3607,26 @@
 	        </section>
 	        <section class="video-showcase" id="videoShowcase" aria-label="Video storytelling project">
 	          <div class="coding-record-wrap">
-	            <img class="coding-record" src="assets/skills/coding-vinyl.jpeg" alt="">
-	            <div class="coding-record-label">02</div>
+	            <img class="coding-record" id="videoRecord" src="assets/skills/coding-vinyl.jpeg" alt="">
+	            <div class="coding-record-label" id="videoRecordLabel">01</div>
 	          </div>
 	          <article class="video-project-card">
-	            <h3 data-zh="汉服漫游记" data-en="An Odyssey with Hanfu">汉服漫游记</h3>
-	            <p class="video-project-type" data-zh="人物故事" data-en="Portrait">人物故事</p>
-	            <video src="assets/skills/video-hanfu.mp4" poster="assets/skills/video-hanfu-poster.png" controls playsinline preload="metadata"></video>
-	            <p data-zh="以校园汉服博主王可为主角，记录她在衣袂与日常之间寻找自我表达的旅程。" data-en="Following campus Hanfu blogger Wang Ke, the film traces a quiet journey of self-expression through flowing sleeves and everyday life.">以校园汉服博主王可为主角，记录她在衣袂与日常之间寻找自我表达的旅程。</p>
+	            <div class="video-project-nav" id="videoProjectNav" aria-label="Video project selector"></div>
+	            <div class="video-project-slide active">
+	              <h3 data-zh="汉服漫游记" data-en="An Odyssey with Hanfu">汉服漫游记</h3>
+	              <p class="video-project-type" data-zh="人物故事" data-en="Portrait">人物故事</p>
+	              <video src="assets/skills/video-hanfu.mp4" poster="assets/skills/video-hanfu-poster.png" controls playsinline preload="metadata"></video>
+	              <p data-zh="以校园汉服博主王可为主角，记录她在衣袂与日常之间寻找自我表达的旅程。" data-en="Following campus Hanfu blogger Wang Ke, the film traces a quiet journey of self-expression through flowing sleeves and everyday life.">以校园汉服博主王可为主角，记录她在衣袂与日常之间寻找自我表达的旅程。</p>
+	            </div>
+	            <div class="video-project-slide">
+	              <h3 data-zh="谁控制了我的腋毛？" data-en="Who Controls My Armpit Hair?">谁控制了我的腋毛？</h3>
+	              <p class="video-project-type" data-zh="性别影像随笔" data-en="Gender Video Essay">性别影像随笔</p>
+	              <a class="video-link-card" href="https://www.youtube.com/watch?v=-su4O6vB5Xw" target="_blank" rel="noopener" aria-label="Open Who Controls My Armpit Hair on YouTube">
+	                <img src="assets/skills/video-gender-poster.jpg" alt="Who Controls My Armpit Hair?">
+	                <span data-zh="前往 YouTube" data-en="Watch on YouTube">前往 YouTube</span>
+	              </a>
+	              <p data-zh="在这支影像里，我以腋毛这一处日常身体细节为入口，追问性别如何悄悄塑造我凝视、管理与理解自己身体的方式。" data-en="In this video, I explore how gender has shaped the way I see and manage my own body through one ordinary example: armpit hair.">在这支影像里，我以腋毛这一处日常身体细节为入口，追问性别如何悄悄塑造我凝视、管理与理解自己身体的方式。</p>
+	            </div>
 	          </article>
 	        </section>
 	        <section class="visual-showcase" id="visualShowcase" aria-label="Visual and content design project">
@@ -4746,6 +4830,10 @@
 	    var codingShowcase = document.getElementById('codingShowcase');
 	    var videoShowcase = document.getElementById('videoShowcase');
 	    var visualShowcase = document.getElementById('visualShowcase');
+	    var videoProjectNav = document.getElementById('videoProjectNav');
+	    var videoSlides = videoShowcase ? Array.prototype.slice.call(videoShowcase.querySelectorAll('.video-project-slide')) : [];
+	    var videoRecord = document.getElementById('videoRecord');
+	    var videoRecordLabel = document.getElementById('videoRecordLabel');
 	    var visualProjectNav = document.getElementById('visualProjectNav');
 	    var visualSlides = visualShowcase ? Array.prototype.slice.call(visualShowcase.querySelectorAll('.visual-project-slide')) : [];
 	    var visualLightbox = document.getElementById('visualLightbox');
@@ -4763,6 +4851,8 @@
 	    var codingProjects = [];
 	    var activeCodingIndex = 0;
 	    var codingWheelLocked = false;
+	    var activeVideoIndex = 0;
+	    var videoWheelLocked = false;
 	    var activeVisualIndex = 0;
 	    var visualWheelLocked = false;
 
@@ -4816,6 +4906,37 @@
         codingProjectNav.appendChild(btn);
       });
 	      setCodingProject(0);
+	    }
+
+	    function setVideoProject(index){
+	      if(!videoSlides.length) return;
+	      activeVideoIndex = Math.max(0, Math.min(videoSlides.length - 1, index));
+	      videoSlides.forEach(function(slide, i){
+	        slide.classList.toggle('active', i === activeVideoIndex);
+	        if(i !== activeVideoIndex){
+	          Array.prototype.slice.call(slide.querySelectorAll('video')).forEach(function(video){
+	            video.pause();
+	          });
+	        }
+	      });
+	      Array.prototype.slice.call(videoProjectNav.children).forEach(function(btn, i){
+	        btn.classList.toggle('active', i === activeVideoIndex);
+	      });
+	      if(videoRecordLabel) videoRecordLabel.textContent = String(activeVideoIndex + 1).padStart(2, '0');
+	      if(videoRecord) videoRecord.style.setProperty('--coding-index', activeVideoIndex);
+	    }
+
+	    function setupVideoShowcase(){
+	      if(!videoProjectNav || !videoSlides.length) return;
+	      videoProjectNav.innerHTML = '';
+	      videoSlides.forEach(function(_, index){
+	        var btn = document.createElement('button');
+	        btn.type = 'button';
+	        btn.setAttribute('aria-label', 'Show video project ' + (index + 1));
+	        btn.addEventListener('click', function(){ setVideoProject(index); });
+	        videoProjectNav.appendChild(btn);
+	      });
+	      setVideoProject(0);
 	    }
 
 	    function setVisualProject(index){
@@ -4882,6 +5003,7 @@
 	      detailMeta.textContent = meta ? meta.textContent : '';
 	      detailBody.innerHTML = body ? body.innerHTML : '';
 	      if(isCoding) setupCodingShowcase(node);
+	      if(isVideo) setupVideoShowcase();
 	      if(isVisual) setupVisualShowcase();
 
 	      overlay.classList.add('open');
@@ -4940,6 +5062,16 @@
 	        visualLightboxImage.addEventListener('click', function(e){ e.stopPropagation(); });
 	      }
 	    }
+	    if(videoShowcase){
+	      videoShowcase.addEventListener('wheel', function(e){
+	        if(!detailPanel.classList.contains('is-video')) return;
+	        e.preventDefault();
+	        if(videoWheelLocked || Math.abs(e.deltaY) < 4) return;
+	        videoWheelLocked = true;
+	        setVideoProject(activeVideoIndex + (e.deltaY > 0 ? 1 : -1));
+	        window.setTimeout(function(){ videoWheelLocked = false; }, 420);
+	      }, { passive:false });
+	    }
 	    codingShowcase.addEventListener('wheel', function(e){
       if(!detailPanel.classList.contains('is-coding')) return;
       e.preventDefault();
@@ -4957,6 +5089,11 @@
 	      if(detailPanel.classList.contains('is-visual')){
 	        if(e.key === 'ArrowRight' || e.key === 'ArrowDown') setVisualProject(activeVisualIndex + 1);
 	        if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') setVisualProject(activeVisualIndex - 1);
+	        return;
+	      }
+	      if(detailPanel.classList.contains('is-video')){
+	        if(e.key === 'ArrowRight' || e.key === 'ArrowDown') setVideoProject(activeVideoIndex + 1);
+	        if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') setVideoProject(activeVideoIndex - 1);
 	        return;
 	      }
 	      if(!detailPanel.classList.contains('is-coding')) return;
